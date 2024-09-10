@@ -45,7 +45,7 @@ def produce(bin_dir, mapa_root, map_work_dir, typfile, style, configfile, fid, s
         mapa_root (string): path to the root directory of a map production environment
         map_work_dir (string): path to a map compilation working directory
         typfile (string): name of a .typ file to be used
-        style (string):  name of the style to be used 
+        style (string):  name of the style to be used
         configfile (string): name of the mkgmap configuration file to be used
         fid (string): map identifier
         src_dir (string): path to a directory with source data
@@ -76,11 +76,11 @@ def produce(bin_dir, mapa_root, map_work_dir, typfile, style, configfile, fid, s
     if (typfile != None and len(typfile) > 0):
         tmp_typ_filename = "style.typ"
         shutil.copy(bin_dir + "/typ/" + typfile, tmp_typ_filename)
-    else: 
+    else:
         tmp_typ_filename = ""
-    
+
     ret = -1
-    command = 'java -enableassertions -Xmx6000m -jar {bin_dir}/mkgmap/mkgmap.jar {param_verbose} --family-name={map_name} --description={map_name} --series-name={map_name}  {param_coastline}  --read-config={mapa_root}/config/{configfile} {param_bounds} --family-id={fid} --product-id={fid} --mapname={publisher_id}{fid}001 --overview-mapname={publisher_id}{fid}000   --style-file={bin_dir}/resources/styles/ --style={styl}  --check-styles {param_lowercase} {param_codepage} -c template.args  {tmp_typ_filename}'.format(
+    command = 'java -enableassertions -Xmx4000m -jar {bin_dir}/mkgmap/mkgmap.jar {param_verbose} --family-name={map_name} --description={map_name} --series-name={map_name}  {param_coastline}  --read-config={mapa_root}/config/{configfile} {param_bounds} --family-id={fid} --product-id={fid} --mapname={publisher_id}{fid}001 --overview-mapname={publisher_id}{fid}000   --style-file={bin_dir}/resources/styles/ --style={styl}  --check-styles {param_lowercase} {param_codepage} -c template.args  {tmp_typ_filename}'.format(
             mapa_root=mapa_root, bin_dir=bin_dir, styl=style, configfile=configfile, fid=fid, publisher_id=publisher_id,map_name=map_name, src_dir=src_dir, tmp_typ_filename=tmp_typ_filename, param_verbose=param_verbose, param_lowercase=param_lowercase, param_codepage=param_codepage, param_coastline=param_coastline, param_bounds=param_bounds)
 
     if platform.system() == 'Windows':
@@ -101,7 +101,7 @@ def produce(bin_dir, mapa_root, map_work_dir, typfile, style, configfile, fid, s
     if not os.path.isfile(nsi_filename + '_ORG'):
         os.rename(nsi_filename, nsi_filename + '_ORG')
     with open(nsi_filename + '_ORG', 'r') as f:
-        with open(nsi_filename, 'w') as f2: 
+        with open(nsi_filename, 'w') as f2:
             f2.write('Unicode True\n')
             f2.write(f.read())
 
@@ -117,7 +117,7 @@ def produce(bin_dir, mapa_root, map_work_dir, typfile, style, configfile, fid, s
         print("Installer created.")
     else:
         raise Exception("NSIS compiler error.")
-    
+
     # Move installer to the products directory.
     try:
         os.remove("{out_dir}/{map_name}-{wersja_mapy}.exe".format(
@@ -127,7 +127,7 @@ def produce(bin_dir, mapa_root, map_work_dir, typfile, style, configfile, fid, s
     os.rename("{map_name}.exe".format(map_name=map_name), "{out_dir}/{map_name}-{map_version}.exe".format(
         out_dir=out_dir, map_version=map_version, map_name=map_name))
 
-    # Compress single Garmin IMG file.  
+    # Compress single Garmin IMG file.
     if platform.system() == 'Windows':
         ret = os.system("start /low /b /wait {bin_dir}\\zip.exe -9 {out_dir}\\{map_name}-{map_version}_IMG.zip gmapsupp.img".format(
             bin_dir=bin_dir, map_version=map_version, out_dir=out_dir, map_name=map_name))

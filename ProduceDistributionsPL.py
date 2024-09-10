@@ -16,19 +16,19 @@ if __name__ == "__main__":
 
         # OSMapaPL.
 
-        mapGlowna = Map(version=version, source_pbf_filename=polska_pbf_filename, 
+        mapGlowna = Map(version=version, source_pbf_filename=polska_pbf_filename,
                 publisher_id=publisher_id, root_dir=mapa_root, coastlinefile=coastline_pbf_filename,
-                fid="004", 
+                fid="004",
                 style="rogal",
                 typfile="rogal.typ",
                 configfile="osmapa.config",
-                map_name="OSMapaPL-PODSTAWOWA", 
+                map_name="OSMapaPL-PODSTAWOWA",
                 bounds_subdir="bounds"
                 )
 
         mapGlowna.print_timestamped_message("START.")
-        
-        # We fetch new map data only when processing the main map (OSMapaPL). Other maps use the same data. 
+
+        # We fetch new map data only when processing the main map (OSMapaPL). Other maps use the same data.
         mapGlowna.print_timestamped_message("Fetching new map data from the OSM server.")
         mapGlowna.fetch(src_db_url=src_db_url, dest_filename=polska_pbf_filename)
 
@@ -44,57 +44,57 @@ if __name__ == "__main__":
 
         # OSMapaPL-OGONKI.
 
-        mapOgonki = Map(version=version, source_pbf_filename=polska_pbf_filename, 
-                publisher_id=publisher_id, root_dir=mapa_root, coastlinefile=coastline_pbf_filename,
-                fid="005", 
-                style="rogal",
-                typfile="rogal-ogonki.typ",
-                configfile="osmapa_ogonki.config",
-                map_name="OSMapaPL-OGONKI", 
-                bounds_subdir="bounds", 
-                lowercase=True,
-                codepage="1250"
-                )
+        # mapOgonki = Map(version=version, source_pbf_filename=polska_pbf_filename,
+        #         publisher_id=publisher_id, root_dir=mapa_root, coastlinefile=coastline_pbf_filename,
+        #         fid="005",
+        #         style="rogal",
+        #         typfile="rogal-ogonki.typ",
+        #         configfile="osmapa_ogonki.config",
+        #         map_name="OSMapaPL-OGONKI",
+        #         bounds_subdir="bounds",
+        #         lowercase=True,
+        #         codepage="1250"
+        #         )
 
-        mapOgonki.print_timestamped_message("START.")
-        mapOgonki.print_timestamped_message("Splitting.")
-        mapOgonki.split()
-        mapOgonki.print_timestamped_message("Preparing compilaton environment.")
-        mapOgonki.prepare()
-        mapOgonki.print_timestamped_message("Compiling.")
-        mapOgonki.compile()
-        mapOgonki.print_timestamped_message("Cleaning.")
-        mapOgonki.clean()
-        mapOgonki.print_timestamped_message("DONE.")
+        # mapOgonki.print_timestamped_message("START.")
+        # mapOgonki.print_timestamped_message("Splitting.")
+        # mapOgonki.split()
+        # mapOgonki.print_timestamped_message("Preparing compilaton environment.")
+        # mapOgonki.prepare()
+        # mapOgonki.print_timestamped_message("Compiling.")
+        # mapOgonki.compile()
+        # mapOgonki.print_timestamped_message("Cleaning.")
+        # mapOgonki.clean()
+        # mapOgonki.print_timestamped_message("DONE.")
 
-        # OSMapaPL-light.
+        # # OSMapaPL-light.
 
-        mapLight = Map(version=version, source_pbf_filename=polska_pbf_filename, 
-                publisher_id=publisher_id, root_dir=mapa_root, coastlinefile=coastline_pbf_filename,
-                fid="006", 
-                style="osmapa-light",
-                typfile="rogal.typ",
-                configfile="osmapa_light.config",
-                map_name="OSMapaPL-LIGHT", 
-                bounds_subdir="bounds"
-                )
+        # mapLight = Map(version=version, source_pbf_filename=polska_pbf_filename,
+        #         publisher_id=publisher_id, root_dir=mapa_root, coastlinefile=coastline_pbf_filename,
+        #         fid="006",
+        #         style="osmapa-light",
+        #         typfile="rogal.typ",
+        #         configfile="osmapa_light.config",
+        #         map_name="OSMapaPL-LIGHT",
+        #         bounds_subdir="bounds"
+        #         )
 
-        mapLight.print_timestamped_message("START.")
-        mapLight.print_timestamped_message("Splitting.")
-        mapLight.split()
-        mapLight.print_timestamped_message("Preparing compilaton environment.")
-        mapLight.prepare()
-        mapLight.print_timestamped_message("Compiling.")
-        mapLight.compile()
-        mapLight.print_timestamped_message("Cleaning.")
-        mapLight.clean()
-        mapLight.print_timestamped_message("DONE.")
+        # mapLight.print_timestamped_message("START.")
+        # mapLight.print_timestamped_message("Splitting.")
+        # mapLight.split()
+        # mapLight.print_timestamped_message("Preparing compilaton environment.")
+        # mapLight.prepare()
+        # mapLight.print_timestamped_message("Compiling.")
+        # mapLight.compile()
+        # mapLight.print_timestamped_message("Cleaning.")
+        # mapLight.clean()
+        # mapLight.print_timestamped_message("DONE.")
 
         # OSMapaPL-SZLAKI.
 
-        mapSzlaki = Map(version=version, source_pbf_filename=polska_pbf_filename, 
-                publisher_id=publisher_id, root_dir=mapa_root, 
-                fid="011", 
+        mapSzlaki = Map(version=version, source_pbf_filename=polska_pbf_filename,
+                publisher_id=publisher_id, root_dir=mapa_root,
+                fid="011",
                 style="trasy-rowerowe",
                 typfile="trasy-rowerowe.typ",
                 configfile="osmapa_szlaki.config",
@@ -114,9 +114,9 @@ if __name__ == "__main__":
 
         # OSMapaPL-WARSTWICE.
 
-        mapWarstwice = Map(version=version, source_pbf_filename=srtm_pbf_filename, 
-                publisher_id=publisher_id, root_dir=mapa_root, 
-                fid="012", 
+        mapWarstwice = Map(version=version, source_pbf_filename=srtm_pbf_filename,
+                publisher_id=publisher_id, root_dir=mapa_root,
+                fid="012",
                 style="osmapa-warstwice",
                 typfile="",
                 configfile="osmapa_warstwice.config",
